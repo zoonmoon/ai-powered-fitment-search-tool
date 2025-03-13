@@ -7,25 +7,24 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const chatRef = useRef(null);
 
-  const parseResponse = (response) => {
+  const parseResponse = (text) => {
+  // Replace newlines with <br>
+  let formattedText = text.replace(/\n/g, '<br>');
 
-   // Replace **bold** with <strong> tags
-   const boldText = response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        
-   // Replace [Link] with <a> tags
-   const withLinks = boldText.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2">$1</a>');
-   
-   // Replace newlines with <br> tags
-   const finalOutput = withLinks.replace(/\n/g, '<br>');
-    
-   return (
-        <div>
-            <p dangerouslySetInnerHTML={{ __html: finalOutput }} />
+  // Replace **text** with <strong>text</strong>
+  formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  // Replace [Link](URL) with <a href="URL" target="_blank">Link</a>
+  formattedText = formattedText.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '<a href="$2" target="_blank">View Product</a>');
+
+      return (
+        <div className="product-card">
+          <p  dangerouslySetInnerHTML={{ __html: formattedText }} />
         </div>
       );
-
   };
   
+
 
   const handleSend = async () => {
     if (!query.trim()) return;
