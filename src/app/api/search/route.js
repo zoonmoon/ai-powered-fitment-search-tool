@@ -25,7 +25,15 @@ export  async function GET(request) {
             }],
         });
 
-        return new Response(JSON.stringify({success: true, response: response.output_text, query: query }), {
+        // Estimate tokens used in both request and response
+        const totalTokens = inputText.length / 4; // Approximate tokens in input
+        const responseTokens = response.output_text.length / 4; // Approximate tokens in response
+        const totalUsedTokens = totalTokens + responseTokens;
+        // Calculate cost (example for GPT-4 pricing)
+        const pricePerToken = 0.03 / 1000; // Price per token for GPT-4 (adjust as necessary)
+        const cost = totalUsedTokens * pricePerToken;
+
+        return new Response(JSON.stringify({success: true, totalUsedTokens, cost, response: response.output_text, query: query }), {
             headers: {
                 "Content-Type": "application/json"
             },
