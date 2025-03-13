@@ -26,14 +26,28 @@ export  async function GET(request) {
         });
 
         // Estimate tokens used in both request and response
-        const totalTokens = inputText.length / 4; // Approximate tokens in input
+        const totalTokens = (query.length + 1000) / 4; // Approximate tokens in input (query + extra tokens)
         const responseTokens = response.output_text.length / 4; // Approximate tokens in response
-        const totalUsedTokens = totalTokens + responseTokens;
-        // Calculate cost (example for GPT-4 pricing)
-        const pricePerToken = 0.03 / 1000; // Price per token for GPT-4 (adjust as necessary)
-        const cost = totalUsedTokens * pricePerToken;
 
-        return new Response(JSON.stringify({success: true, totalUsedTokens, cost, response: response.output_text, query: query }), {
+        // Calculate the total tokens used
+        const totalUsedTokens = totalTokens + responseTokens;
+
+        // Price per token based on the pricing model provided (input, cached input, and output)
+        const pricePerInputToken = 0.15 / 1000000;  // $0.15 per million input tokens
+        const pricePerCachedInputToken = 0.075 / 1000000;  // $0.075 per million cached input tokens
+        const pricePerOutputToken = 0.60 / 1000000;  // $0.60 per million output tokens
+
+        // Assuming `totalTokens` and `responseTokens` include both input and output tokens:
+        // Calculate costs based on the tokens used
+        const inputCost = totalTokens * pricePerInputToken;
+        const cachedInputCost = totalTokens * pricePerCachedInputToken;
+        const outputCost = responseTokens * pricePerOutputToken;
+
+        // Total cost calculation
+        const totalCost = inputCost + cachedInputCost + outputCost;
+
+
+        return new Response(JSON.stringify({success: true, totalCost, totalUsedTokens, response: response.output_text, query: query }), {
             headers: {
                 "Content-Type": "application/json"
             },
