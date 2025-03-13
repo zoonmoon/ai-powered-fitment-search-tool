@@ -1,3 +1,7 @@
+export const config = {
+    maxDuration: 50 // Extend up to 60 seconds
+};
+  
 import OpenAI from 'openai';
 
 const openai = new OpenAI();
