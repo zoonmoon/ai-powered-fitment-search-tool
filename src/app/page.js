@@ -53,7 +53,7 @@ export default function Home() {
     }
   };
 
-  
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !loading) {
       handleSend();
@@ -111,7 +111,8 @@ export default function Home() {
           margin-bottom: 20px;
         }
         .chat-container {
-          width: 500px;
+          width: 90%;
+          max-width: 500px;
           background: #ffffff;
           border-radius: 12px;
           box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
