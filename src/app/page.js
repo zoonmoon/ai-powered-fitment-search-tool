@@ -7,34 +7,23 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const chatRef = useRef(null);
 
-  const parseResponse = (text) => {
-    const match = text.match(/\*\*(.*?)\*\*/g);
-    if (!match) return text;
-  
-    return text.split(/\n\n(?=\d\.)/).map((item, index) => {
-      const lines = item.split('\n');
-      const title = lines[0].replace(/\*\*/g, '');
-      const details = lines.slice(1).map(line => {
-        let formattedLine = line.replace(/- \*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const parseResponse = (response) => {
+
+   // Replace **bold** with <strong> tags
+   const boldText = response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         
-        // Convert URLs into clickable links
-        formattedLine = formattedLine.replace(
-          /(https?:\/\/[^\s]+)/g,
-          '<a href="$1" target="_blank" rel="noopener noreferrer">View Product</a>'
-        );
-  
-        return formattedLine;
-      });
-  
-      return (
-        <div key={index} className="product-card">
-          <h3>{title}</h3>
-          {details.map((detail, i) => (
-            <p key={i} dangerouslySetInnerHTML={{ __html: detail }} />
-          ))}
+   // Replace [Link] with <a> tags
+   const withLinks = boldText.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2">$1</a>');
+   
+   // Replace newlines with <br> tags
+   const finalOutput = withLinks.replace(/\n/g, '<br>');
+    
+   return (
+        <div>
+            <p dangerouslySetInnerHTML={{ __html: finalOutput }} />
         </div>
       );
-    });
+
   };
   
 
