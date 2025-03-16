@@ -69,13 +69,11 @@ function displayMessages(){
             msgArr.sort((a, b) => a.sort_order - b.sort_order)
             .map(a => a.msg)
             .join('')
-            ,
-            Object.values(messages).length == index+1
           )
         }
       </div>
     `
-  }).join('');
+  }).join('') + (loading ? createBlinkingCursor() : '') ;
 
   if(isUserAtBottomBeforeAddingContent) scrollToBottom() // after adding content as well
 
@@ -93,9 +91,17 @@ const parseResponse = (text, blink = false) => {
 
       return `
         <div class="product-card">
-          <p>${formattedText}</p>
+          <p>
+            ${formattedText}
+          </p>
         </div>
+        
       `
   };
 
 
+  function createBlinkingCursor() {
+    return `
+      <div  class="cursor"></div>
+    `
+  }

@@ -141,3 +141,17 @@
 }
 
 
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background-color: black;
+  margin-top: 5px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    visibility: hidden;
+  }
+}
