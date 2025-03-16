@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "custom-chat-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "openai": "^4.87.3",
+    "socket.io": "^4.8.1"
+  }
+}
