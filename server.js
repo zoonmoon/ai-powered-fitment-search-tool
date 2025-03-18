@@ -57,7 +57,8 @@ io.on('connection', (socket) => {
           List matching products compulsarily with its year, make, model, submodel and chain. List up to 10 if as long as there are matches.
           If the user does not mention year, but mentions make and model, first prompt the user to provide
           year (compalsarily give the available year range compatible with make and model) and only then provide him the list of parts.    
-      `,
+          Don't mention anything related to uploaded files, as this tool is being used by end users (website visitors).  
+        `,
       input: `${query}`,
       tools: [{
         type: "file_search",
