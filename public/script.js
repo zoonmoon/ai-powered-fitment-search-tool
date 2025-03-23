@@ -73,7 +73,9 @@ function displayMessages(){
         }
       </div>
     `
-  }).join('') + (loading ? createBlinkingCursor() : '') ;
+  }).join('') + (loading ? createBlinkingCursor() : '') 
+
+  ;
 
   if(isUserAtBottomBeforeAddingContent) scrollToBottom() // after adding content as well
 
