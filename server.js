@@ -19,6 +19,19 @@ const openai = new OpenAI();
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
+const readSheetAndUpload = require('./utils/read_sheet.js'); // Import the function
+
+
+// Reindex Route
+app.get('/reindex', async (req, res) => {
+  try {
+      await readSheetAndUpload(); // Call the function
+      res.json({ success: true, message: 'Reindexing completed' });
+  } catch (error) {
+      res.status(500).json({ success: false, message: 'Error reindexing, please try again'});
+  }
+});
+
 
 
 function getRandomInt(min, max) {
