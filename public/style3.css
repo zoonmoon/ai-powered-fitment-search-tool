@@ -6,7 +6,6 @@
   }
   
   body {
-    background: linear-gradient(135deg, #74ebd5, #acb6e5);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -22,7 +21,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 90vh;
   }
   
   .chat-header {
