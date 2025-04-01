@@ -59,7 +59,7 @@ socket.on('chatMessage', (data) => {
 
 function handleDislikeClick(){
   console.log("hello, posting...")
-  window.parent.postMessage({ action: "initializeShopifyChat", text: "Init" }, "https://oinker.shop/");
+  window.parent.postMessage({ action: "initializeShopifyChat", text: "Init" }, "*");
 }
 
 
