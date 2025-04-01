@@ -63,6 +63,7 @@ function handleDislikeClick(){
 }
 
 
+
 function displayMessages(){
   
   let isUserAtBottomBeforeAddingContent = isUserAtBottom() 
