@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
       model: "gpt-4o-mini",
       previous_response_id: prev_response_id.length == 0 ? null : prev_response_id, 
       instructions: `
-          List matching products compulsarily with its year, make, model, submodel and chain. List up to 10 products if as long as there are matches but IMPORTANT: DO NOT include product SKU info in the response. I repeat: The response should contain any info about SKU.
+          List matching products compulsarily with its year, make, model, submodel and chain. List up to 10 products if as long as there are matches but IMPORTANT: DO NOT include product SKU info in the response. I repeat: The response should contain any info about SKU. The response should contain product link whenever possible.
           If the user does not mention year, but mentions make and / or model, first prompt the user to provide
           year (compalsarily give the available year range compatible with make and model) and only then provide him the list of parts.    
           Also, very important: don't include the terms "files" and "uploaded"  in your response, as this tool is being used by end users (website visitors).  
