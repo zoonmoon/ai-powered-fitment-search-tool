@@ -161,7 +161,7 @@
   letter-spacing: -0.035em;
 }
 
-.product-card *{
+.product-card{
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   font-size: 16px;

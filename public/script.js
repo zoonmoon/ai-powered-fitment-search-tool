@@ -59,8 +59,14 @@ socket.on('chatMessage', (data) => {
 
 function handleDislikeClick(){
   console.log("hello, posting...")
-  // window.parent.postMessage({ action: "initializeShopifyChat", text: "Init" }, "*");
+  window.parent.postMessage({ action: "initializeShopifyChat", text: "" }, "*");
 }
+
+function handleViewProductLinkClick(link){
+  console.log("hello, posting...", link)
+  window.parent.postMessage({ action: "initializeShopifyChat", text: link }, "*");
+}
+
 
 function displayMessages(){
   
@@ -94,7 +100,7 @@ const parseResponse = (text, blink = false) => {
   formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
   // Replace [Link](URL) with <a href="URL" target="_blank">Link</a>
-  formattedText = formattedText.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '<a href="$2">View Product</a>');
+  formattedText = formattedText.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+)\)/g, '<a href="#" onclick="handleViewProductLinkClick(`$2`)">View Product</a>');
 
       return `
         <div class="product-card">
