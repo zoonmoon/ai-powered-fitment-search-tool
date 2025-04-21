@@ -55,14 +55,14 @@ async function readSheetAndUpload() {
 
       console.log("File uploaded, assigning to vector store...");
       const fileID = result.id;
-      await openai.vectorStores.files.create("vs_67d2683d04d4819194c7c542107b2fab", {
+      await openai.vectorStores.files.create("vs_680677b70d088191a0471869912db0d4", {
           file_id: fileID
       });
 
       console.log("File assigned to vector store, listing files...");
 
       const vectorStoreFiles = await openai.vectorStores.files.list(
-          "vs_67d2683d04d4819194c7c542107b2fab"
+          "vs_680677b70d088191a0471869912db0d4"
       );
 
       const vectorStoreFilesData = vectorStoreFiles.data;
@@ -72,7 +72,7 @@ async function readSheetAndUpload() {
       for (let i = 1; i < vectorStoreFilesData.length; i++) {
           try {
               console.log("Deleting old vector store file...");
-              await openai.vectorStores.files.del("vs_67d2683d04d4819194c7c542107b2fab", vectorStoreFilesData[i].id);
+              await openai.vectorStores.files.del("vs_680677b70d088191a0471869912db0d4", vectorStoreFilesData[i].id);
               await openai.files.del(vectorStoreFilesData[i].id);
               console.log("File deleted.");
           } catch (error) {
@@ -81,7 +81,7 @@ async function readSheetAndUpload() {
       }
 
       const vectorStoreFilesAfterDeletion = await openai.vectorStores.files.list(
-          "vs_67d2683d04d4819194c7c542107b2fab"
+          "vs_680677b70d088191a0471869912db0d4"
       );
       console.log("After deletion, number of files:", vectorStoreFilesAfterDeletion.data.length);
 
