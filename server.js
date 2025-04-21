@@ -76,12 +76,11 @@ io.on('connection', (socket) => {
       tools: [{
         type: "file_search",
         "max_num_results": 1,
-        vector_store_ids: ["vs_680677b70d088191a0471869912db0d4"],
+        vector_store_ids: ["vs_67d2683d04d4819194c7c542107b2fab"],
       }],
       stream: true, // Enable streaming
   });
 
-  
   
   let outputText = "";
 
