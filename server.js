@@ -81,6 +81,8 @@ io.on('connection', (socket) => {
       stream: true, // Enable streaming
   });
 
+
+  // new key - vs_680677b70d088191a0471869912db0d4
   
   let outputText = "";
 
