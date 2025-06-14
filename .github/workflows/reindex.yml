@@ -1,0 +1,12 @@
+name: Daily Reindex
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # runs at 3:00 AM UTC daily
+
+jobs:
+  curl-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call reindex endpoint
+        run: curl -s https://ai-powered-fitment-search-eijmn.ondigitalocean.app/reindex
