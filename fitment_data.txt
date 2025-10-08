@@ -3645,6 +3645,15 @@
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
   },
   {
+    "CC": "698",
+    "MAKE": "Ducati",
+    "MODEL/SUBMODEL": "698 Hypermotard Mono",
+    "YEAR": "24-25",
+    "CHAIN SIZE": "520",
+    "SKU": "OKR-520",
+    "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+  },
+  {
     "CC": "748",
     "MAKE": "Ducati",
     "MODEL/SUBMODEL": "748 Biposto",
@@ -4602,7 +4611,7 @@
     "CC": "937",
     "MAKE": "Ducati",
     "MODEL/SUBMODEL": "937 Monster",
-    "YEAR": "23",
+    "YEAR": "23-25",
     "CHAIN SIZE": "520",
     "SKU": "OKR-520",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -4620,7 +4629,7 @@
     "CC": "937",
     "MAKE": "Ducati",
     "MODEL/SUBMODEL": "937 Monster +",
-    "YEAR": "23",
+    "YEAR": "23-25",
     "CHAIN SIZE": "520",
     "SKU": "OKR-520",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -8003,6 +8012,15 @@
   {
     "CC": "90",
     "MAKE": "Honda",
+    "MODEL/SUBMODEL": "CT90 Trail, X",
+    "YEAR": "66-79",
+    "CHAIN SIZE": "428",
+    "SKU": "OKR-428",
+    "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-428-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+  },
+  {
+    "CC": "90",
+    "MAKE": "Honda",
     "MODEL/SUBMODEL": "EZ 90 Cub",
     "YEAR": "90–92",
     "CHAIN SIZE": "428",
@@ -8751,7 +8769,7 @@
     "CC": "125",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "MSX125 (Grom 125)",
-    "YEAR": "24",
+    "YEAR": "24-25",
     "CHAIN SIZE": "420",
     "SKU": "OKR-520",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -8760,7 +8778,7 @@
     "CC": "125",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "MSX125 (Grom 125) SP",
-    "YEAR": "24",
+    "YEAR": "24-25",
     "CHAIN SIZE": "420",
     "SKU": "OKR-520",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -10388,6 +10406,15 @@
   {
     "CC": "350",
     "MAKE": "Honda",
+    "MODEL/SUBMODEL": "Hness CB350 Highness",
+    "YEAR": "68-24",
+    "CHAIN SIZE": "520",
+    "SKU": "OKR-520",
+    "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-520-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+  },
+  {
+    "CC": "350",
+    "MAKE": "Honda",
     "MODEL/SUBMODEL": "CB350 SG",
     "YEAR": "86–88",
     "CHAIN SIZE": "525",
@@ -11928,7 +11955,7 @@
     "CC": "600",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "CBR600 RR-N,P USA",
-    "YEAR": "22–23",
+    "YEAR": "22–25",
     "CHAIN SIZE": "525",
     "SKU": "OKR-525",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-525-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -14097,7 +14124,7 @@
     "CC": "1100",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "CRF1100 L Africa Twin",
-    "YEAR": "24",
+    "YEAR": "24-25",
     "CHAIN SIZE": "525",
     "SKU": "OKR-525",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-525-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -14142,7 +14169,7 @@
     "CC": "1100",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "CRF1100 L Africa Twin DCT",
-    "YEAR": "24",
+    "YEAR": "24-25",
     "CHAIN SIZE": "525",
     "SKU": "OKR-525",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-525-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -14196,7 +14223,7 @@
     "CC": "1100",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "CRF1100 L Africa Twin Adventure Sports ES",
-    "YEAR": "24",
+    "YEAR": "24-25",
     "CHAIN SIZE": "525",
     "SKU": "OKR-525",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-525-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -14241,7 +14268,7 @@
     "CC": "1100",
     "MAKE": "Honda",
     "MODEL/SUBMODEL": "CRF1100 L Africa Twin Adventure Sports ES DCT",
-    "YEAR": "24",
+    "YEAR": "24-25",
     "CHAIN SIZE": "525",
     "SKU": "OKR-525",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-525-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
@@ -20203,6 +20230,15 @@
     "CHAIN SIZE": "630",
     "SKU": "OKR-530",
     "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-530-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
+  },
+  {
+    "CC": "1100",
+    "MAKE": "Kawasaki",
+    "MODEL/SUBMODEL": "Versys ",
+    "YEAR": "25",
+    "CHAIN SIZE": "525",
+    "SKU": "OKR-525",
+    "Product Link": "https://www.oinker.shop/products/oinker-motorcycle-chain-oiler-525-chain-size?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"
   },
   {
     "CC": "1100",
