@@ -75,13 +75,13 @@ io.on('connection', (socket) => {
         - Reply with a short, direct answer focused on chain size (and Oinker size).
 
         Default answer when you have a clear match:
-        - "The stock chain size is 525. Choose the 525 dispenser on the product page."
+        - "The stock chain size is 525. Choose the 525 dispenser."
           Replace 525 with the correct size from the data.
         - Keep it under two short sentences.
 
         Special chain-size mapping (VERY IMPORTANT):
         - If the fitment data says 420 chain, your reply must be:
-          "The stock chain size is 420. Choose the 520 dispenser on the product page."
+          "The stock chain size is 420. Choose the 520 dispenser."
         - If the fitment data says 532 chain, your reply must be:
           "The stock chain size is 532. Choose the 530 dispenser on the product page."
         - If the fitment data says 630 chain, your reply must be:
