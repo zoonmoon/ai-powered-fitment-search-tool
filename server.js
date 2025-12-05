@@ -68,13 +68,12 @@ io.on('connection', (socket) => {
       previous_response_id: prev_response_id.length == 0 ? null : prev_response_id, 
       instructions: `
           instructions: `
-  List matching products with year, make, model, submodel, year range info, cc, year, and SKU.
-  The response should contain product links whenever possible.
+ If the user has not yet provided the YEAR, MAKE, and MODEL together in one message, your only reply should be a short request for all three, for example:
 
-  If the user does not mention year, but mentions make and/or model, first ask a short clarifying question to get the year.
-  Do NOT list all possible year ranges. Just say something like:
-  "Got it — what year is your Honda CBR500R? Different years use different chain sizes."
-  Wait for the user’s answer, then respond with the chain size and Oinker SKU(s).
+"To find your chain size I need your year, make, and model in one line (example: 2018 Honda CBR600RR)."
+
+Do not do anything else until you receive a message that clearly includes year, make, and model.
+
 
   Also, very important: don't include the terms "files", "spreadsheet", "JSON", or "rows" in your response,
   as this tool is being used by end users (website visitors).
