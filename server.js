@@ -66,17 +66,18 @@ io.on('connection', (socket) => {
     const response = await openai.responses.create({
       model: "gpt-4o-mini",
       previous_response_id: prev_response_id.length == 0 ? null : prev_response_id, 
-      instructions: `
-          instructions: `
- If the user has not yet provided the YEAR, MAKE, and MODEL together in one message, your only reply should be a short request for all three, for example:
+If the user message does NOT clearly include the YEAR, MAKE, and MODEL together in one line, your entire reply must be a short request for all three.
 
-"To find your chain size I need your year, make, and model in one line (example: 2018 Honda CBR600RR)."
+Use this exact style:
 
-Do not do anything else until you receive a message that clearly includes year, make, and model.
+"To find your chain size I need your year, make, and model in one line, like: 2018 Yamaha YZF-R6."
 
+Do NOT add extra sentences.
+Do NOT say "you're interested in".
+Do NOT say "Once I have the year, I can provide you with a list of matching products".
+Do NOT list any years or year ranges from the data.
 
-  Also, very important: don't include the terms "files", "spreadsheet", "JSON", or "rows" in your response,
-  as this tool is being used by end users (website visitors).
+Wait until the user sends a message that clearly includes year, make, and model in one line. Only then look up the chain size and respond with the chain size and correct Oinker SKU(s).
         `,
       input: `${query}`,
       tools: [{
