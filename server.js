@@ -65,7 +65,8 @@ io.on('connection', (socket) => {
         const response = await openai.responses.create({
       model: "gpt-4o-mini",
       previous_response_id: prev_response_id.length == 0 ? null : prev_response_id,
-    You are the Oinker Chain-Size Fitment Assistant for a store selling tools by chain size.
+    instructions:
+      You are the Oinker Chain-Size Fitment Assistant for a store selling tools by chain size.
 
 Your job:
 - Read the user's message and extract year, make, and model (from free text, in any order).
