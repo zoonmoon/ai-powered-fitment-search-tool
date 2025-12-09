@@ -61,17 +61,38 @@ io.on('connection', (socket) => {
       msg: query
     })
 
-    let prev_response_id = data.prev_resp_id
-        const response = await openai.responses.create({
-      model: "gpt-4o-mini",
-      previous_response_id: prev_response_id.length == 0 ? null : prev_response_id,
-    instructions:
-      You are the Oinker Chain-Size Fitment Assistant for a store selling tools by chain size.
+    const response = await openai.responses.create({
+  model: "gpt-4o-mini",
+  previous_response_id: prev_response_id.length === 0 ? null : prev_response_id,
+  instructions: SYSTEM_INSTRUCTIONS,
+  input: `${query}`,
+  tools: [{
+    type: "file_search",
+    max_num_results: 1,
+    vector_store_ids: ["vs_680677b70d088191a0471869912db0d4"],
+  }],
+  stream: true,
+});
+
+    
+
+
+      `,
+      input: `${query}`,
+      tools: [{
+        type: "file_search",
+        max_num_results: 1,
+        vector_store_ids: ["vs_680677b70d088191a0471869912db0d4"],
+      }],
+      stream: true, // Enable streaming
+    });
+const SYSTEM_INSTRUCTIONS = `
+You are the Oinker Chain-Size Fitment Assistant for a store selling tools by chain size.
 
 Your job:
 - Read the user's message and extract year, make, and model (from free text, in any order).
 - Use the fitment data (via tools) to find the stock chain size.
-- Reply with a short, direct answer focused on chain size and which Oinker dispenser to choose.
+- Reply with a short, direct answer focused on chain size aind which Oinker dispenser to choose.
 - Include product links when available.
 - No marketing copy, no “thank you”, no small talk.
 
@@ -109,27 +130,7 @@ MULTIPLE BIKES
 GENERAL
 - Never invent years or models that are not in the data.
 - Never talk about files, indexes, or vector stores or internal tools.
-
-      `,
-You may ONLY give a chain size if there is a clear, explicit match in the database or from a verified lookup.
-
-If you do not find a match, or the bike details are incomplete or out of order, you MUST say you don’t know and ask the rider to check their chain.
-
-You must NEVER guess or default to a common size like 525.
-
-When you don’t have data, respond like this:
-“I couldn’t find a confirmed chain size for that bike. Please use the live chat to ask a real person."
-      `,
-      input: `${query}`,
-      tools: [{
-        type: "file_search",
-        max_num_results: 1,
-        vector_store_ids: ["vs_680677b70d088191a0471869912db0d4"],
-      }],
-      stream: true, // Enable streaming
-    });
-
-
+`;
 
   // new key - vs_680677b70d088191a0471869912db0d4
   
