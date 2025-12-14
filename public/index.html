@@ -12,12 +12,11 @@
     <div class="chat-messages" id="messages">
       <div>
         <div class="product-card">
-          <p>
-            Enter your motorcycle year, make, and model to find the right dispenser.
-          </p>
+          <p>Enter your motorcycle year, make, and model to find the right dispenser.</p>
         </div>
       </div>
     </div>
+
     <div class="chat-input">
       <input style="font-size: 16px!important;" type="text" id="messageInput" placeholder="Enter year, make, and model" autocomplete="off">
       <button onclick="sendMessage()">Send</button>
@@ -26,5 +25,39 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
+
+  <script>
+    (function () {
+      var tries = 0;
+      var maxTries = 50; // ~5 seconds
+
+      function wrapSendMessage() {
+        tries++;
+
+        if (typeof window.sendMessage !== "function") {
+          if (tries < maxTries) return setTimeout(wrapSendMessage, 100);
+          console.warn("sendMessage() not found on window. It may be scoped inside script.js.");
+          return;
+        }
+
+        var original = window.sendMessage;
+
+        window.sendMessage = function () {
+          try {
+            // Track submit in parent (Shopify)
+            window.parent.postMessage({ type: "fitment_submit" }, "https://www.oinker.shop");
+            // If your Shopify domain sometimes isn't www, temporarily use "*":
+            // window.parent.postMessage({ type: "fitment_submit" }, "*");
+          } catch (e) {}
+
+          return original.apply(this, arguments);
+        };
+
+        console.log("sendMessage() wrapped for fitment_submit tracking.");
+      }
+
+      wrapSendMessage();
+    })();
+  </script>
 </body>
 </html>
