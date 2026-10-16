@@ -3,7 +3,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 require('dotenv').config();
 
-console.log("opanai", process.env.OPENAI_API_KEY);
+
 
 const app = express();
 const server = http.createServer(app);
