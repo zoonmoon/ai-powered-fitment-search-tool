@@ -59,7 +59,7 @@ GENERAL
 app.use(express.static('public'));
 
 const readSheetAndUpload = require('./utils/read_sheet.js');
-
+const logSearch = require('./utils/log_search.js');
 // Reindex Route
 app.get('/reindex', async (req, res) => {
   try {
@@ -113,11 +113,14 @@ io.on('connection', (socket) => {
       });
 
       let sortOrder = 0;
+      let fullAnswer = '';
 
       for await (const chunk of response) {
         sortOrder++;
 
         if (chunk.type === 'response.output_text.delta') {
+          fullAnswer += chunk.delta;
+          
           io.to(socketIdOfMsgReceiver).emit('chatMessage', {
             sort_order: sortOrder,
             completed: false,
@@ -134,6 +137,11 @@ io.on('connection', (socket) => {
             msg: '',
           });
         }
+      }
+            try {
+        await logSearch(query, fullAnswer, socket.id);
+      } catch (logError) {
+        console.error('Search logging failed:', logError.message);
       }
     } catch (err) {
       console.error('Error handling chatMessage:', err);
