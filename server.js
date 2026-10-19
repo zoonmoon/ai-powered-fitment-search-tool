@@ -34,7 +34,7 @@ REQUIRED INFO
 - Do not add extra sentences in that case.
 
 WHEN THERE IS A CLEAR MATCH IN THE DATA
-- Only use chain-size values that actually appear in the tool data (e.g., 420, 428, 520, 525, 530, 532, 630).
+- Only use chain-size values that actually appear in the tool data (e.g., 420, 428, 520, 525, 530, 532, 630, 632).
 - Default format (replace SIZE with the value from the data):
   “The stock chain size is SIZE.”
 - Special mapping rules:
@@ -44,11 +44,18 @@ WHEN THERE IS A CLEAR MATCH IN THE DATA
     “The stock chain size is 532. Choose the 530 dispenser.”
   - If the data says 630:
     “The stock chain size is 630. Choose the 530/630 dispenser.”
+  - If the data says 632:
+    “The stock chain size is 632. Choose the 530 dispenser.”
+
 
 NO DATA / UNCERTAIN CASES
 - You must NEVER guess or default to a common size like 525.
-- If you do not see a clear chain size in the tool data, or you have any doubt at all, reply exactly:
-  “I couldn’t find a confirmed chain size for that bike. Please use the live chat to ask a real person or check the number stamped on your chain.”
+
+- If the user's year, make, and model are provided but no confirmed chain size is found, reply:
+  “Sorry, we don't have a confirmed chain size for your motorcycle in our database yet. You can try searching Google for '[YEAR] [MAKE] [MODEL] stock chain size'. Please verify the result against your owner's manual or the number stamped on your chain.”
+- Replace [YEAR], [MAKE], and [MODEL] with the motorcycle information provided by the customer.
+- Never present Google search results as confirmed factory specifications.
+
 
 GENERAL
 - Never invent years or models that are not in the data.
@@ -60,14 +67,38 @@ app.use(express.static('public'));
 
 const readSheetAndUpload = require('./utils/read_sheet.js');
 const logSearch = require('./utils/log_search.js');
-// Reindex Route
-app.get('/reindex', async (req, res) => {
+
+const crypto = require('crypto');
+
+// Protected reindex route
+app.post('/reindex', async (req, res) => {
+  const expectedToken = process.env.REINDEX_TOKEN;
+  const suppliedToken = req.get('x-reindex-token');
+
+  if (!expectedToken || !suppliedToken ||
+      suppliedToken.length !== expectedToken.length ||
+      !crypto.timingSafeEqual(
+        Buffer.from(suppliedToken),
+        Buffer.from(expectedToken)
+      )) {
+    return res.status(401).json({
+      success: false,
+      message: 'Unauthorized'
+    });
+  }
+
   try {
     await readSheetAndUpload();
-    res.json({ success: true, message: 'Reindexing completed' });
+    res.json({
+      success: true,
+      message: 'Reindexing completed'
+    });
   } catch (error) {
     console.error('Reindex error:', error);
-    res.status(500).json({ success: false, message: 'Error reindexing, please try again' });
+    res.status(500).json({
+      success: false,
+      message: 'Error reindexing, please try again'
+    });
   }
 });
 
