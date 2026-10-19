@@ -68,22 +68,56 @@ async function readSheetAndUpload() {
       const vectorStoreFilesData = vectorStoreFiles.data;
       console.log("Total files in vector store:", vectorStoreFilesData.length);
 
-      // ✅ Delete old vector store files (except the most recent one)
-      for (let i = 1; i < vectorStoreFilesData.length; i++) {
-          try {
-              console.log("Deleting old vector store file...");
-              await openai.vectorStores.files.del("vs_680677b70d088191a0471869912db0d4", vectorStoreFilesData[i].id);
-              await openai.files.del(vectorStoreFilesData[i].id);
-              console.log("File deleted.");
-          } catch (error) {
-              console.log("Error deleting file:", error.message);
-          }
+    
+    
+      // Wait for the new database to finish indexing.
+      // Keep the existing database if indexing fails.
+      let newFile;
+      const maxAttempts = 60;
+
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        newFile = await openai.vectorStores.files.retrieve(
+          "vs_680677b70d088191a0471869912db0d4",
+          fileID
+        );
+
+        if (newFile.status === 'completed') {
+          break;
+        }
+
+        if (newFile.status === 'failed' ||
+            newFile.status === 'cancelled') {
+          throw new Error('New database indexing failed.');
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
+
+      if (!newFile || newFile.status !== 'completed') {
+        throw new Error(
+          'New database indexing timed out. Previous files preserved.'
+        );
+      }
+
+
+     
+      // SAFETY: Do not automatically delete previous fitment files.
+      // Preserve them until the new database has been tested.
+      console.log(
+        "New fitment file indexed successfully:", fileID
+      );
+      console.log(
+        "Previous vector store files preserved for rollback."
+      );
+
+
       
       const vectorStoreFilesAfterDeletion = await openai.vectorStores.files.list(
           "vs_680677b70d088191a0471869912db0d4"
       );
-      console.log("After deletion, number of files:", vectorStoreFilesAfterDeletion.data.length);
+      
+console.log("Vector store files retained:", vectorStoreFilesAfterDeletion.data.length);
+
 
       return { success: true }; // ✅ Ensure function returns a Promise with a response
 
